@@ -1,0 +1,14 @@
+private JPanel best;
+
+...
+
+graphBest = new GraphAlgo();
+        Viewer viewerBest = new Viewer(graphBest.getGraph(), Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+        ViewPanel viewBest = viewerBest.addDefaultView(false);   // false indicates "no JFrame".
+        best.add(viewBest);
+
+
+
+
+JPanel en borderlayout manager
+GraphAlgo est le graphstream
