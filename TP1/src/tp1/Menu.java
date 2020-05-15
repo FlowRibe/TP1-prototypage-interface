@@ -76,7 +76,7 @@ public class Menu extends JFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp1/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp1/img/logo.png"))); // NOI18N
         jPanel1.add(logo, new java.awt.GridBagConstraints());
 
         jPanel3.setLayout(new java.awt.GridBagLayout());

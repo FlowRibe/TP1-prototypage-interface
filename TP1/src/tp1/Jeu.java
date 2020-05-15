@@ -5,13 +5,11 @@
  */
 package tp1;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import org.graphstream.ui.swingViewer.ViewPanel;
+import org.graphstream.ui.view.Viewer;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -50,9 +48,16 @@ public class Jeu extends JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnSup = new javax.swing.JButton();
         btnAjout = new javax.swing.JButton();
+
         panelGraphes = new javax.swing.JPanel();
-        grapheTest = new javax.swing.JPanel();
-        grapheMeilleur = new javax.swing.JPanel();
+        panelTest = new javax.swing.JPanel();
+        graphTest = new Graphs("Graph de parcours");
+        viewerTest = graphTest.getGraph().display(true);
+        viewTest = viewerTest.addDefaultView(false);
+        panelMeilleur = new javax.swing.JPanel();
+        graphMeilleur = new Graphs("Graph meilleur");
+        viewerMeilleur = graphMeilleur.getGraph().display(true);
+        viewMeilleur = viewerMeilleur.addDefaultView(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,35 +189,37 @@ public class Jeu extends JFrame {
 
         panelGraphes.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
 
-        grapheTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelTest.add(viewTest);
+        panelTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout grapheTestLayout = new javax.swing.GroupLayout(grapheTest);
-        grapheTest.setLayout(grapheTestLayout);
-        grapheTestLayout.setHorizontalGroup(
-            grapheTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelTestLayout = new javax.swing.GroupLayout(panelTest);
+        panelTest.setLayout(panelTestLayout);
+        panelTestLayout.setHorizontalGroup(
+                panelTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 546, Short.MAX_VALUE)
         );
-        grapheTestLayout.setVerticalGroup(
-            grapheTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelTestLayout.setVerticalGroup(
+                panelTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 383, Short.MAX_VALUE)
         );
 
-        panelGraphes.add(grapheTest);
+        panelGraphes.add(panelTest);
 
-        grapheMeilleur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelMeilleur.add(viewMeilleur);
+        panelMeilleur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout grapheMeilleurLayout = new javax.swing.GroupLayout(grapheMeilleur);
-        grapheMeilleur.setLayout(grapheMeilleurLayout);
-        grapheMeilleurLayout.setHorizontalGroup(
-            grapheMeilleurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelMeilleurLayout = new javax.swing.GroupLayout(panelMeilleur);
+        panelMeilleur.setLayout(panelMeilleurLayout);
+        panelMeilleurLayout.setHorizontalGroup(
+                panelMeilleurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 546, Short.MAX_VALUE)
         );
-        grapheMeilleurLayout.setVerticalGroup(
-            grapheMeilleurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelMeilleurLayout.setVerticalGroup(
+                panelMeilleurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 383, Short.MAX_VALUE)
         );
 
-        panelGraphes.add(grapheMeilleur);
+        panelGraphes.add(panelMeilleur);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,11 +257,13 @@ public class Jeu extends JFrame {
     }//GEN-LAST:event_btnOptionActionPerformed
 
     private void btnSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupActionPerformed
-        // TODO add your handling code here:
+        graphTest.removeNode();
+        graphMeilleur.removeNode();
     }//GEN-LAST:event_btnSupActionPerformed
 
     private void btnAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjoutActionPerformed
-        // TODO add your handling code here:
+        graphTest.createNode();
+        graphMeilleur.createNode();
     }//GEN-LAST:event_btnAjoutActionPerformed
 
     private void cboxVitesseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxVitesseActionPerformed
@@ -333,11 +342,18 @@ public class Jeu extends JFrame {
     private javax.swing.JButton btnSup;
     private javax.swing.JComboBox<String> cboxVitesse;
     private javax.swing.JPanel controls;
-    private javax.swing.JPanel grapheMeilleur;
-    private javax.swing.JPanel grapheTest;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel4;
+
     private javax.swing.JPanel panelGraphes;
+    private javax.swing.JPanel panelTest;
+    private Viewer viewerTest;
+    private ViewPanel viewTest;
+    private Graphs graphTest;
+    private javax.swing.JPanel panelMeilleur;
+    private Viewer viewerMeilleur;
+    private ViewPanel viewMeilleur;
+    private Graphs graphMeilleur;
     // End of variables declaration//GEN-END:variables
 }
 
